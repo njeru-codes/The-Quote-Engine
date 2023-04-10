@@ -1,16 +1,17 @@
-from fastapi import APIRouter, HTTPException, status
+from fastapi import APIRouter, HTTPException, status, Depends
 from typing import Optional, List
 from ..config import db_connection
 from bson import json_util
 import json
 from .. import schemas
+from ..auth.auth import validate_api_key
 
 router = APIRouter(
     prefix='/quotes'
 )
 
 @router.get('/random', response_model=List[schemas.Quote] )
-async def random_quote(limit: Optional[int]=1):
+async def random_quote(limit: Optional[int]=1, api_key: str = Depends(validate_api_key)):
     try:
         db_conn =db_connection()
         quotes = db_conn.db_quotes.quotes

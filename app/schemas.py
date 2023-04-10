@@ -13,6 +13,8 @@ class NewUser(BaseModel):
     first_name: str
     surname: str
     username:str
-    created_at: Optional[datetime]=None
 
+class User(BaseModel):
+    identity: str
+    password: str
 

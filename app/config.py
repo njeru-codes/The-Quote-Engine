@@ -4,6 +4,10 @@ from pymongo import MongoClient
 
 class Settings(BaseSettings):
     mongo_uri:str
+    secret_key:str
+    algorithm:str="HS256"
+    rabbitmq_uri: str
+
     class Config:
         env_file = ".env"
 

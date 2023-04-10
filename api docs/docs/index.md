@@ -1,17 +1,9 @@
-# Welcome to MkDocs
+# API DOCS
+## introduction
+Quote Engine is an inspirational api built using fastapi framework and MONGODB to store the quotes
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 
-## Commands
+## getting started
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
 
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+## tech stack 
