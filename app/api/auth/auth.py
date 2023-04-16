@@ -1,8 +1,9 @@
 from fastapi import  HTTPException, status, Depends
 from fastapi.security import APIKeyHeader, OAuth2PasswordBearer
-from ..config import db_connection, settings
+from ..config import db_connection
 from jose import JWTError, jwt
 from datetime import datetime, timedelta
+import os
 
 api_key_header = APIKeyHeader(name="X-API-Key")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/login")
@@ -26,14 +27,14 @@ def create_access_token(data: dict):
     to_encode = data.copy()
     expire = datetime.utcnow() + timedelta(minutes=15)
     to_encode.update({"exp": expire})
-    encoded_jwt = jwt.encode(to_encode, settings.secret_key, algorithm=settings.algorithm)
+    encoded_jwt = jwt.encode(to_encode, os.environ.get('secret_key'), algorithm=os.environ.get('algorithm'))
     return encoded_jwt
 
 
 
 def verify_access_token(token: str, credentials_exception):
     try:
-        payload =jwt.decode(token, settings.secret_key )
+        payload =jwt.decode(token, os.environ.get('secret_key') )
         user_id:str = payload.get("user_id")
         if id is None: 
             raise credentials_exception
