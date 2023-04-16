@@ -18,3 +18,10 @@ class User(BaseModel):
     identity: str
     password: str
 
+class NewPassword(BaseModel):
+    new_password: str
+    confirm_password: str
+
+class ResetPassword(BaseModel):
+    email: EmailStr
+

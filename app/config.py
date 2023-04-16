@@ -1,4 +1,4 @@
-from pydantic import BaseSettings
+from pydantic import BaseSettings, EmailStr
 from pymongo import MongoClient
 
 
@@ -7,6 +7,7 @@ class Settings(BaseSettings):
     secret_key:str
     algorithm:str="HS256"
     rabbitmq_uri: str
+    # email_sender: EmailStr
 
     class Config:
         env_file = ".env"
