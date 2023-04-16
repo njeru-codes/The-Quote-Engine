@@ -1,8 +1,6 @@
-from fastapi import FastAPI
-from .config import db_connection
-from .routes import quotes, users , login
 import uvicorn
-
+from fastapi import FastAPI
+from api.routes import login, users,quotes
 app = FastAPI()
 
 # routes
