@@ -34,9 +34,9 @@
       var is_top_frame = (window === window.parent);
         
         var pageToc = [
-          {title: "Welcome to MkDocs", url: "#_top", children: [
-              {title: "Commands", url: "#commands" },
-              {title: "Project layout", url: "#project-layout" },
+          {title: "Quote Engine API Documentation", url: "#_top", children: [
+              {title: "Getting Started", url: "#getting-started" },
+              {title: "tech stack", url: "#tech-stack" },
           ]},
         ];
 
@@ -94,7 +94,15 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <nav class="wm-toc-pane">
   
   <ul class="wm-toctree">
-        <li class="wm-toc-li wm-toc-lev1 "><a href="" class="wm-article-link wm-toc-text">Welcome to MkDocs</a>
+        <li class="wm-toc-li wm-toc-lev1 "><a href="" class="wm-article-link wm-toc-text">Home</a>
+</li>
+        <li class="wm-toc-li wm-toc-lev1 "><a href="routes/" class="wm-article-link wm-toc-text">Routes</a>
+</li>
+        <li class="wm-toc-li wm-toc-lev1 "><a href="examples/" class="wm-article-link wm-toc-text">examples</a>
+</li>
+        <li class="wm-toc-li wm-toc-lev1 "><a href="FAQs/" class="wm-article-link wm-toc-text">FAQs</a>
+</li>
+        <li class="wm-toc-li wm-toc-lev1 "><a href="support/" class="wm-article-link wm-toc-text">Support</a>
 </li>
   </ul>
 </nav>
@@ -109,25 +117,87 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
     
 
     
+    
+      
+    
 
-    <h1 id="welcome-to-mkdocs">Welcome to MkDocs</h1>
-<p>For full documentation visit <a href="https://www.mkdocs.org">mkdocs.org</a>.</p>
-<h2 id="commands">Commands</h2>
-<ul>
-<li><code>mkdocs new [dir-name]</code> - Create a new project.</li>
-<li><code>mkdocs serve</code> - Start the live-reloading docs server.</li>
-<li><code>mkdocs build</code> - Build the documentation site.</li>
-<li><code>mkdocs -h</code> - Print help message and exit.</li>
-</ul>
-<h2 id="project-layout">Project layout</h2>
-<pre><code>mkdocs.yml    # The configuration file.
-docs/
-    index.md  # The documentation homepage.
-    ...       # Other markdown pages, images and other files.
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="routes/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="routes/" class="btn btn-xs btn-link">
+        Routes
+      </a>
+    </div>
+    
+  </div>
+
+    
+
+    <h1 id="quote-engine-api-documentation">Quote Engine API Documentation</h1>
+<p>The Quote Engine API is a fast and reliable API that generates random motivational quotes. This API is built using FastAPI, a high-performance web framework for building APIs with Python.</p>
+<p>With the Quote Engine API, you can easily integrate motivational quotes into your application or website, providing your users with daily inspiration and motivation. Whether you're building a personal development app, a fitness tracker, or a productivity tool, the Quote Engine API can help you enhance your user experience.</p>
+<p>This documentation provides an overview of the Quote Engine API, including how to access the API, the available endpoints, and how to use the API in your application. Let's get started!</p>
+<h2 id="getting-started">Getting Started</h2>
+<p>To start using the Quote Engine API, follow these steps: <br/>
+1. Clone the repository to your local machine using the following command:</p>
+<pre><code class="language-bash">    $ git clone https://github.com/njeru-codes/The-Quote-Engine
 </code></pre>
+<p>2.Create a .env file in the root directory of the project and add the following variables:</p>
+<pre><code class="language-json">    mongo_uri=&quot;&quot;
+    secret_key=&quot;&quot;
+</code></pre>
+<p>The mongo_uri variable should be set to the URI of your MongoDB database. The secret_key variable is a random string used to create JWT tokens. You can generate a random string using the following command:</p>
+<pre><code class="language-bash">    $ openssl rand -hex 32
+</code></pre>
+<p>3.Install the required dependencies using the following command:</p>
+<pre><code class="language-bash">    $ pip install -r requirements.txt
+</code></pre>
+<p>4.Start the server using the following command:</p>
+<pre><code class="language-bash">    $ uvicorn app.main:app
+</code></pre>
+<p>5.To view the API documentation, navigate to http://localhost:8000/docs in your web browser.
+6.To view the documentation for the API built with OpenAPI, navigate to the api docs directory in the root of the project using the terminal, and run the following command:</p>
+<pre><code class="language-bash">    $ mkdocs serve
+</code></pre>
+<p>This will start a local development server for the API documentation. You can then view the documentation by navigating to http://localhost:8000 in your web browser.</p>
+<h2 id="tech-stack">tech stack</h2>
+<p>The Quote Engine API is built with the following technologies:
+    <strong> <br/>   Python </strong>: The core programming language used to build the API.
+    <strong> <br/>   FastAPI </strong>: A modern, fast (high-performance) web framework for building APIs with Python. *
+    <strong> <br/>   MongoDB </strong>: A NoSQL document-oriented database used to store the quotes data.
+    <strong> <br/>   PyMongo </strong>: A Python library for interacting with MongoDB databases.
+    <strong> <br/>   PyJWT </strong>: A Python library for encoding and decoding JSON Web Tokens (JWTs).
+    <strong> <br/>   Bcrypt </strong>: A password hashing library used to hash and verify user passwords.
+    <strong> <br/>   Requests </strong>: A Python library used to make HTTP requests to external APIs.
+    <strong> <br/>   MkDocs </strong>: A static site generator used to generate the API documentation.
+    <strong> <br/>   Material for MkDocs </strong>: A Material Design theme for MkDocs used to style the API  documentation.</p>
+<p>The combination of these technologies provides a powerful and scalable platform for generating random motivational quotes, with a robust and user-friendly API and documentation.</p>
 
   <br>
     
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="routes/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="routes/" class="btn btn-xs btn-link">
+        Routes
+      </a>
+    </div>
+    
+  </div>
 
     <br>
 </div>
@@ -140,5 +210,5 @@ docs/
 </html>
 <!--
 MkDocs version : 1.4.2
-Build Date UTC : 2023-04-07 18:54:00.620138+00:00
+Build Date UTC : 2023-04-16 12:51:25.908621+00:00
 -->

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Routes - Quote Engine</title>
+    <link href="../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Route Documentation", url: "#_top", children: [
+              {title: "POST /login", url: "#post-login" },
+              {title: "POST /user/new", url: "#post-usernew" },
+              {title: "GET /quotes", url: "#get-quotes" },
+          ]},
+        ];
+
+    </script>
+    <script src="../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../examples/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../examples/" class="btn btn-xs btn-link">
+        examples
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href=".." class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href=".." class="btn btn-xs btn-link">
+        Home
+      </a>
+    </div>
+    
+  </div>
+
+    
+
+    <h1 id="route-documentation">Route Documentation</h1>
+<h4 id="post-login"><code>POST /login</code></h4>
+<p>Endpoint used to authenticate users and generate a JWT access token.
+Request</p>
+<pre><code>HTTP Method: POST
+Endpoint: /login
+Headers:
+    Content-Type: application/x-www-form-urlencoded
+Request Body:
+</code></pre>
+<pre><code class="language-json">        username: &quot;The user's username or email&quot;.
+        password: &quot;The user's password&quot;.
+</code></pre>
+<p>Response
+    Status Codes:
+        200 OK: Successful authentication.
+        400 Bad Request: Invalid credentials.</p>
+<pre><code>Response Body:
+    access_token: The JWT access token.
+    token_type: "Bearer".
+</code></pre>
+<p>example</p>
+<pre><code class="language-bash">$ curl -X POST https://example.com/login \
+       -H &quot;Content-Type: application/x-www-form-urlencoded&quot; \
+       -d &quot;username=john_doe&amp;password=secret&quot;
+</code></pre>
+<p>sample response</p>
+<pre><code class="language-json">{
+  &quot;access_token&quot;: &quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...&lt;JWT Token&gt;&quot;,
+  &quot;token_type&quot;: &quot;Bearer&quot;
+}
+</code></pre>
+<p><br/><br/></p>
+<h4 id="post-usernew"><code>POST /user/new</code></h4>
+<p>Endpoint used to create a new user.
+Request</p>
+<pre><code>HTTP Method: POST
+Endpoint: /user/new
+Headers:
+    Content-Type: application/json
+Request Body:
+    email: The user's email address. This should be a valid email address.
+    password: The user's password. This should be a string.
+    first_name: The user's first name. This should be a string.
+    surname: The user's surname. This should be a string.
+    username: The user's username. This should be a string.
+</code></pre>
+<p>Response</p>
+<pre><code>Status Codes:
+    201 Created: User created successfully.
+    400 Bad Request: Invalid request body.
+    403 Forbidden: User with the same email or username already exists.
+
+Response Body (if status code is 201 Created):
+    user_id: The unique identifier of the created user.
+    email: The email address of the created user.
+
+Response Body (if status code is 400 Bad Request):
+    detail: The error message explaining the validation error(s).
+
+Response Body (if status code is 403 Forbidden):
+    detail: The error message explaining that the email or username already exists.
+</code></pre>
+<p>Example</p>
+<pre><code class="language-curl">$ curl -X POST https://example.com/user/new \
+       -H &quot;Content-Type: application/json&quot; \
+       -d '{&quot;email&quot;: &quot;john.doe@example.com&quot;, &quot;password&quot;: &quot;password&quot;, &quot;first_name&quot;: &quot;John&quot;, &quot;surname&quot;: &quot;Doe&quot;, &quot;username&quot;: &quot;johndoe&quot;}'
+</code></pre>
+<pre><code class="language-json">{
+  &quot;user_id&quot;: &quot;12345&quot;,
+  &quot;email&quot;: &quot;john.doe@example.com&quot;
+}
+</code></pre>
+<p><br/><br/></p>
+<h4 id="get-quotes"><code>GET /quotes</code></h4>
+<p>This endpoint returns a random motivational quote from the database. <br/>
+<code>Request Parameters</code> <br/>
+    limit (optional): The maximum number of quotes to return. Defaults to 1 if not set.</p>
+<p>Headers</p>
+<pre><code>X-API-Key: The API key used to authenticate the request.
+</code></pre>
+<p>Response</p>
+<p>Returns a JSON object or an array of objects with the following fields:</p>
+<pre><code>quote: The text of the motivational quote.
+author: The author of the quote.
+</code></pre>
+<p>Example response with limit set to 1:</p>
+<pre><code class="language-json">{
+    &quot;quote&quot;: &quot;The only way to do great work is to love what you do.&quot;,
+    &quot;author&quot;: &quot;Steve Jobs&quot;
+}
+</code></pre>
+<p>Example response with limit set to 3:</p>
+<pre><code class="language-json">[
+    {
+        &quot;quote&quot;: &quot;The only way to do great work is to love what you do.&quot;,
+        &quot;author&quot;: &quot;Steve Jobs&quot;
+    },
+    {
+        &quot;quote&quot;: &quot;Success is not final, failure is not fatal: It is the courage to continue that counts.&quot;,
+        &quot;author&quot;: &quot;Winston S. Churchill&quot;
+    },
+    {
+        &quot;quote&quot;: &quot;Believe you can and you're halfway there.&quot;,
+        &quot;author&quot;: &quot;Theodore Roosevelt&quot;
+    }
+]
+</code></pre>
+
+  <br>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../examples/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../examples/" class="btn btn-xs btn-link">
+        examples
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href=".." class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href=".." class="btn btn-xs btn-link">
+        Home
+      </a>
+    </div>
+    
+  </div>
+
+    <br>
+</div>
+
+<footer class="container-fluid wm-page-content">
+  <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>
