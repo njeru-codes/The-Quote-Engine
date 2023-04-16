@@ -1,3 +1,11 @@
 site_name: Quote Engine
 theme: 'windmill'
+nav:
+    - Home: index.md
+    - Routes: routes.md
+    - examples: examples.md
+    - FAQs: FAQs.md
+    - Support: support.md
+    
+    
 
